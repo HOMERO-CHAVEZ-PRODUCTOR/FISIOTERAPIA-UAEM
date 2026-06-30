@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRADUACIÓN | FISIOTERAPIA UAEM 2026</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta Conceptual Boho-Chic: Terracota, Café, Olivo y Dorado */
+            --fisio-terracota: #BC5D3B; /* Tono barro/terracota de los jarrones */
+            --fisio-cafe: #4A2E1B; /* Tono café tabaco de la mantelería */
+            --fisio-olivo: #6B705C; /* Tono verde olivo de las servilletas/follaje */
+            --fisio-gold: #CFA249; /* Acentos dorados */
+            --text-ivory: #FDFBF7; 
+            --bg-dark: #0A0705; 
+            
+            /* Cristal translúcido para legibilidad perfecta sobre 14.png limpia */
+            --glass-bg: rgba(10, 7, 5, 0.65); 
+            --glass-border: rgba(188, 93, 59, 0.3);
+            --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- ARQUITECTURA BASE --- */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            color: var(--text-ivory);
+            line-height: 1.8; 
+            overflow-x: hidden;
+            background-color: var(--bg-dark);
+        }
+
+        /* --- FONDO DE IMAGEN (14.png) 100% LIMPIO --- */
+        .bg-image {
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-image: url('14.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -4;
+        }
+
+        /* --- TIPOGRAFÍA ALATA --- */
+        h1, h2, h3, h4, .accent-title, .date-box, .time-content span, .dish span {
+            font-family: 'Alata', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: normal;
+        }
+
+        /* --- ESTRUCTURA EDITORIAL FLOTANTE --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .reveal-node { 
+            opacity: 0; 
+            transform: translateY(30px);
+            animation: reveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+        }
+
+        @keyframes reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            margin-bottom: 150px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--fisio-terracota);
+            margin-bottom: 60px;
+            letter-spacing: 4px;
+        }
+
+        /* --- PORTADA --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title-wrapper {
+            background: var(--glass-bg);
+            padding: 50px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        header h1 { 
+            font-size: clamp(2.5rem, 8vw, 4.5rem); 
+            margin-bottom: 5px;
+            color: var(--text-ivory);
+            letter-spacing: 6px;
+            line-height: 1.2;
+        }
+
+        header p { 
+            font-size: 1.2rem; 
+            letter-spacing: 10px; 
+            color: var(--fisio-terracota); 
+            margin-top: 20px; 
+        }
+
+        .decorative-line {
+            width: 80px;
+            height: 2px;
+            background: var(--fisio-olivo);
+            margin: 40px auto 0;
+        }
+
+        /* --- FECHA Y UBICACIÓN --- */
+        .date-box {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            letter-spacing: 6px;
+            color: var(--text-ivory);
+            margin-bottom: 80px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .date-box span {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(8px);
+        }
+
+        .location-info {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 50px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .location-info h3 {
+            font-size: 2rem;
+            color: var(--fisio-terracota);
+            margin-bottom: 20px;
+        }
+
+        .location-info p {
+            font-size: 1.2rem;
+            color: var(--text-ivory);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn-elegant {
+            display: inline-block;
+            padding: 18px 50px;
+            background: transparent;
+            color: var(--fisio-terracota);
+            border: 1px solid var(--fisio-terracota);
+            text-decoration: none;
+            font-family: 'Alata', sans-serif;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-elegant:hover {
+            background: var(--fisio-terracota);
+            color: var(--bg-dark);
+        }
+
+        /* --- ITINERARIO CENTRADO (LÍNEA VERTICAL) --- */
+        .timeline-wrapper {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 60px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .timeline-grid {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .timeline-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background: linear-gradient(to bottom, var(--fisio-terracota), var(--fisio-olivo));
+        }
+
+        .time-item {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .time-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-node {
+            width: 14px;
+            height: 14px;
+            background: var(--fisio-terracota);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 6px var(--glass-bg);
+        }
+
+        .time-content {
+            padding-top: 30px; 
+        }
+
+        .time-content span {
+            display: block;
+            color: var(--fisio-terracota);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .time-content p {
+            color: var(--text-ivory);
+            font-weight: 300;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        /* --- MENÚ --- */
+        .menu-category {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            margin-bottom: 40px;
+        }
+
+        .menu-category h4 {
+            color: var(--fisio-olivo);
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            border-bottom: 1px solid rgba(107, 112, 92, 0.4);
+            padding-bottom: 10px;
+        }
+
+        .dish {
+            margin-bottom: 25px;
+        }
+
+        .dish:last-child {
+            margin-bottom: 0;
+        }
+
+        .dish span {
+            display: block;
+            color: var(--fisio-terracota);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .dish p {
+            font-weight: 300;
+            color: var(--text-ivory);
+            font-size: 1.05rem;
+        }
+
+        /* --- RECOMENDACIONES --- */
+        .recs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .rec-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(8px);
+            text-align: left;
+        }
+
+        .rec-card h4 {
+            color: var(--fisio-olivo);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .rec-card p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--text-ivory);
+        }
+
+        /* --- AUDIO --- */
+        #music-btn {
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            width: 65px; 
+            height: 65px;
+            border-radius: 50%; 
+            z-index: 5000; 
+            border: 1px solid var(--fisio-terracota);
+            background: rgba(10, 7, 5, 0.8); 
+            cursor: pointer;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem;
+            transition: var(--transition-smooth); 
+            color: var(--text-ivory);
+            backdrop-filter: blur(5px);
+        }
+
+        #music-btn:hover { 
+            transform: scale(1.1); 
+            background: var(--fisio-terracota);
+            color: var(--bg-dark);
+        }
+
+        footer { 
+            padding: 80px 20px; 
+            text-align: center; 
+            border-top: 1px solid rgba(188, 93, 59, 0.2); 
+            margin-top: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+        }
+
+        @media (max-width: 768px) {
+            .date-box { font-size: 1.8rem; gap: 10px; }
+            section { margin-bottom: 100px; }
+            .section-title { font-size: 2rem; margin-bottom: 40px; }
+            .location-info, .timeline-wrapper, .menu-category { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-image"></div>
+
+    <audio id="gradAudio" loop preload="auto" playsinline>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+    <button id="music-btn" onclick="gestionarMusica()">🔇</button>
+
+    <div class="container">
+        
+        <header>
+            <div class="title-wrapper reveal-node">
+                <h1>FISIOTERAPIA UAEM</h1>
+                <p>GENERACIÓN 2026</p>
+                <div class="decorative-line"></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="intro-block reveal-node" style="text-align: center; margin: 0 auto 80px; max-width: 800px; font-weight: 300; font-size: 1.2rem; line-height: 2;">
+                "Bajo el encanto de una velada inolvidable, conmemoramos el fruto de nuestra dedicación y brindamos por el inicio de una historia extraordinaria."
+            </div>
+
+            <section class="info-section">
+                <div class="date-box reveal-node">
+                    <span>18</span> <span>07</span> <span>26</span>
+                </div>
+
+                <div class="location-info reveal-node">
+                    <h3>RECEPCIÓN</h3>
+                    <p>Hacienda El Coecillo<br>Estado de México</p>
+                    <a href="https://maps.app.goo.gl/jxGmNNQkKbVTMv9XA" target="_blank" class="btn-elegant">Ver Ubicación</a>
+                </div>
+            </section>
+
+            <!-- ITINERARIO CENTRADO -->
+            <section class="timeline-section reveal-node">
+                <h3 class="section-title">Itinerario</h3>
+                <div class="timeline-wrapper">
+                    <div class="timeline-grid">
+                        <div class="time-item">
+                            <div class="time-node"></div>
+                            <div class="time-content">
+                                <span>20:00 HRS</span>
+                                <p>Recepción / Saxofón</p>
+                            </div>
+                        </div>
+                        <div class="time-item">
+                            <div class="time-node"></div>
+                            <div class="time-content">
+                                <span>21:00 HRS</span>
+                                <p>Cena / Violín</p>
+                            </div>
+                        </div>
+                        <div class="time-item">
+                            <div class="time-node"></div>
+                            <div class="time-content">
+                                <span>22:30 HRS</span>
+                                <p>Baile / DJ / Happenings</p>
+                            </div>
+                        </div>
+                        <div class="time-item">
+                            <div class="time-node"></div>
+                            <div class="time-content">
+                                <span>02:00 AM</span>
+                                <p>Fin del Evento</p>
+                            </div>
+                        </div>
+                        <div class="time-item">
+                            <div class="time-node"></div>
+                            <div class="time-content">
+                                <span>02:00 AM - 03:00 AM</span>
+                                <p>Desalojo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MENÚ -->
+            <section class="menu-section reveal-node">
+                <h3 class="section-title">Menú</h3>
+
+                <div class="menu-category">
+                    <h4>Menú Principal</h4>
+                    
+                    <div class="dish">
+                        <span>PRIMER TIEMPO</span>
+                        <p>Ensalada tropical (mezcla de lechuga y espinaca acompañada de brunoise mango, arándano, queso de cabra, nuez caramelizada, croutones y vinagreta de mango)</p>
+                    </div>
+                    <div class="dish">
+                        <span>SEGUNDO TIEMPO</span>
+                        <p>Crema de cilantro (tocino y queso)</p>
+                    </div>
+                    <div class="dish">
+                        <span>PLATO FUERTE</span>
+                        <p>Pollo Alfredo (espinaca, jamón serrano y queso crema) en salsa mornay con parmesano.</p>
+                    </div>
+                    <div class="dish">
+                        <span>GUARNICIONES</span>
+                        <p>Papa Rustica (Ajo, parmesano, mantequilla, perejil).<br>Verduras salteadas con mantequilla. (Calabaza, brócoli y zanahoria)</p>
+                    </div>
+                    <div class="dish">
+                        <span>POSTRE</span>
+                        <p>Fresas flameadas con helado de vainilla y lluvia de nuez caramelizada</p>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h4>Menú Vegano y Vegetariano</h4>
+                    <div class="dish">
+                        <p>Portobello relleno de verduras con salsa de tomate y líneas de balsámico</p>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h4>Menú Infantil</h4>
+                    <div class="dish">
+                        <p>Pasta codito jamón y crema<br>Papas a la francesa.<br>Tiritas de pollo (empanizadas)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RECOMENDACIONES -->
+            <section class="recs-section reveal-node">
+                <h3 class="section-title">Detalles</h3>
+                <div class="recs-grid">
+                    <div class="rec-card">
+                        <h4>CLIMA Y PROTECCIÓN</h4>
+                        <p>Sugerimos tomar precauciones e ir abrigados ante el clima del lugar.</p>
+                    </div>
+                    <div class="rec-card">
+                        <h4>ACCESO ÚNICO</h4>
+                        <p>Considere que el recinto cuenta con un solo acceso habilitado para la entrada.</p>
+                    </div>
+                    <div class="rec-card">
+                        <h4>VALET PARKING</h4>
+                        <p>Servicio externo a HC, con costo adicional por auto.</p>
+                    </div>
+                    <div class="rec-card">
+                        <h4>ÁREAS DE FUMAR</h4>
+                        <p>El consumo de tabaco está restringido exclusivamente a las áreas exteriores.</p>
+                    </div>
+                    <div class="rec-card">
+                        <h4>MENÚS ESPECIALES</h4>
+                        <p>Si requiere menú vegano, vegetariano o por alergias, solicítelo en la selección de mesas.</p>
+                    </div>
+                    <div class="rec-card">
+                        <h4>GUARDARROPA</h4>
+                        <p>No hay servicio de guardarropa. El kit de graduado será entregado en la entrada.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <h2 class="accent-title" style="color: var(--fisio-terracota);">FISIOTERAPIA UAEM</h2>
+            <p style="color: var(--fisio-olivo); letter-spacing: 4px; font-size: 0.9rem;">GRADUACIÓN 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        const audio = document.getElementById('gradAudio');
+        const btn = document.getElementById('music-btn');
+
+        function gestionarMusica() {
+            if (audio.paused) {
+                let playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        btn.innerHTML = "🔊";
+                    }).catch(error => {
+                        console.log("Interacción bloqueada por el navegador");
+                    });
+                }
+            } else {
+                audio.pause();
+                btn.innerHTML = "🔇";
+            }
+        }
+
+        ['click', 'touchstart'].forEach(evt => {
+            document.body.addEventListener(evt, () => {
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        btn.innerHTML = "🔊";
+                    }).catch(err => console.log("Audio en espera..."));
+                }
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>
