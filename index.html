@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRADUACIÓN | FISIOTERAPIA UAEM 2026</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Tipografía AmstelvarAlpha (fallback a Playfair) para títulos e Inter para textos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
+        @font-face {
+            font-family: 'AmstelvarAlpha';
+            src: local('AmstelvarAlpha'), local('Playfair Display'); 
+        }
+
         :root {
-            /* Paleta Conceptual Boho-Chic: Terracota, Café, Olivo y Dorado */
-            --fisio-terracota: #BC5D3B; /* Tono barro/terracota de los jarrones */
-            --fisio-cafe: #4A2E1B; /* Tono café tabaco de la mantelería */
-            --fisio-olivo: #6B705C; /* Tono verde olivo de las servilletas/follaje */
-            --fisio-gold: #CFA249; /* Acentos dorados */
+            /* Paleta Oficial: Amber Glow, Crimson Blaze, Maple Spice, Moss Mist, Lagoon */
+            --amber-glow: #B78953; 
+            --crimson-blaze: #964734; 
+            --maple-spice: #692721; 
+            --moss-mist: #4C563F; 
+            --lagoon: #243533; 
             --text-ivory: #FDFBF7; 
-            --bg-dark: #0A0705; 
             
-            /* Cristal translúcido para legibilidad perfecta sobre 14.png limpia */
-            --glass-bg: rgba(10, 7, 5, 0.65); 
-            --glass-border: rgba(188, 93, 59, 0.3);
+            /* Contenedores translúcidos basados en la paleta para legibilidad perfecta */
+            --glass-bg: rgba(36, 53, 51, 0.75); /* Basado en Lagoon */
+            --glass-border: rgba(183, 137, 83, 0.35); /* Borde Amber Glow */
             --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -35,10 +41,10 @@
             color: var(--text-ivory);
             line-height: 1.8; 
             overflow-x: hidden;
-            background-color: var(--bg-dark);
+            background-color: var(--lagoon);
         }
 
-        /* --- FONDO DE IMAGEN (14.png) 100% LIMPIO --- */
+        /* --- FONDO DE IMAGEN (14.png) --- */
         .bg-image {
             position: fixed;
             top: 0; 
@@ -51,15 +57,69 @@
             z-index: -4;
         }
 
-        /* --- TIPOGRAFÍA ALATA --- */
-        h1, h2, h3, h4, .accent-title, .date-box, .time-content span, .dish span {
-            font-family: 'Alata', sans-serif;
+        /* CAPA DE OSCURECIMIENTO (OVERLAY) CON LA PALETA DE COLORES */
+        .overlay {
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            /* Degradado usando Lagoon y Maple Spice oscurecidos para dar contraste sin perder color */
+            background: linear-gradient(135deg, rgba(36,53,51,0.92) 0%, rgba(105,39,33,0.85) 100%);
+            z-index: -3;
+            pointer-events: none;
+        }
+
+        /* --- TIPOGRAFÍA PARA TÍTULOS --- */
+        h1, h2, .accent-title, .date-box {
+            font-family: 'AmstelvarAlpha', 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: normal;
+            color: var(--amber-glow);
+        }
+
+        h3, h4, .time-content span, .dish span {
+            font-family: 'AmstelvarAlpha', 'Playfair Display', serif;
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: normal;
+            color: var(--text-ivory); /* Subtítulos en Ivory brillante */
         }
 
-        /* --- ESTRUCTURA EDITORIAL FLOTANTE --- */
+        /* --- DINAMISMO: PÍLDORAS FLOTANTES VERTICALES ALARGADAS --- */
+        .pill-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden;
+            z-index: 1; 
+            pointer-events: none;
+        }
+
+        .pill {
+            position: absolute;
+            border: 2px solid var(--text-ivory); 
+            border-radius: 200px; /* Bordes totalmente redondeados */
+            background: transparent; 
+            animation: floatPill linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatPill {
+            0% { transform: translateY(10vh); opacity: 0; }
+            10% { opacity: var(--target-opacity); }
+            90% { opacity: var(--target-opacity); }
+            100% { transform: translateY(-110vh); opacity: 0; }
+        }
+
+        /* Píldoras mucho más alargadas y con movimiento estrictamente vertical */
+        .pill-1 { width: 60px; height: 380px; left: 12%; bottom: -400px; --target-opacity: 0.25; animation-duration: 25s; animation-delay: 0s; }
+        .pill-2 { width: 45px; height: 280px; left: 82%; bottom: -300px; --target-opacity: 0.4; animation-duration: 20s; animation-delay: 4s; }
+        .pill-3 { width: 80px; height: 500px; left: 28%; bottom: -550px; --target-opacity: 0.15; animation-duration: 32s; animation-delay: 8s; }
+        .pill-4 { width: 50px; height: 320px; left: 72%; bottom: -350px; --target-opacity: 0.3; animation-duration: 22s; animation-delay: 2s; }
+        .pill-5 { width: 70px; height: 420px; left: 45%; bottom: -450px; --target-opacity: 0.2; animation-duration: 28s; animation-delay: 12s; }
+
+        /* --- ESTRUCTURA EDITORIAL --- */
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -84,10 +144,11 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
-            color: var(--fisio-terracota);
+            font-size: 3rem;
+            color: var(--amber-glow);
             margin-bottom: 60px;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
+            text-shadow: 0 2px 10px rgba(183, 137, 83, 0.2);
         }
 
         /* --- PORTADA --- */
@@ -98,22 +159,25 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
         }
 
         .title-wrapper {
             background: var(--glass-bg);
             padding: 50px 30px;
             border-radius: 20px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             width: 100%;
             max-width: 800px;
+            z-index: 5; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
         header h1 { 
             font-size: clamp(2.5rem, 8vw, 4.5rem); 
             margin-bottom: 5px;
-            color: var(--text-ivory);
+            color: var(--amber-glow); 
             letter-spacing: 6px;
             line-height: 1.2;
         }
@@ -121,14 +185,14 @@
         header p { 
             font-size: 1.2rem; 
             letter-spacing: 10px; 
-            color: var(--fisio-terracota); 
+            color: var(--text-ivory); 
             margin-top: 20px; 
         }
 
         .decorative-line {
             width: 80px;
             height: 2px;
-            background: var(--fisio-olivo);
+            background: var(--crimson-blaze);
             margin: 40px auto 0;
         }
 
@@ -136,7 +200,7 @@
         .date-box {
             font-size: clamp(2.5rem, 8vw, 4rem);
             letter-spacing: 6px;
-            color: var(--text-ivory);
+            color: var(--amber-glow);
             margin-bottom: 80px;
             display: flex;
             justify-content: center;
@@ -144,11 +208,8 @@
         }
 
         .date-box span {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 15px 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--crimson-blaze);
+            padding-bottom: 5px;
         }
 
         .location-info {
@@ -156,12 +217,13 @@
             border: 1px solid var(--glass-border);
             padding: 50px 30px;
             border-radius: 20px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .location-info h3 {
             font-size: 2rem;
-            color: var(--fisio-terracota);
+            color: var(--text-ivory);
             margin-bottom: 20px;
         }
 
@@ -170,42 +232,45 @@
             color: var(--text-ivory);
             margin-bottom: 40px;
             font-weight: 300;
+            opacity: 0.9;
         }
 
         .btn-elegant {
             display: inline-block;
             padding: 18px 50px;
             background: transparent;
-            color: var(--fisio-terracota);
-            border: 1px solid var(--fisio-terracota);
+            color: var(--amber-glow);
+            border: 1px solid var(--amber-glow);
             text-decoration: none;
-            font-family: 'Alata', sans-serif;
+            font-family: 'AmstelvarAlpha', 'Playfair Display', serif;
             letter-spacing: 2px;
             font-size: 1rem;
             border-radius: 50px;
             transition: var(--transition-smooth);
+            text-transform: uppercase;
         }
 
         .btn-elegant:hover {
-            background: var(--fisio-terracota);
+            background: var(--amber-glow);
             color: var(--bg-dark);
         }
 
-        /* --- ITINERARIO CENTRADO (LÍNEA VERTICAL) --- */
+        /* --- ITINERARIO REDISEÑADO (ALINEADO A LA IZQUIERDA) --- */
         .timeline-wrapper {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            padding: 60px 20px;
+            padding: 60px 40px;
             border-radius: 20px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .timeline-grid {
             position: relative;
             max-width: 500px;
             margin: 0 auto;
-            padding: 20px 0;
-            text-align: center;
+            text-align: left; /* Alineado a la izquierda */
+            padding-left: 30px; /* Espacio para la línea */
         }
 
         .timeline-grid::before {
@@ -213,15 +278,15 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0; /* Línea en el borde izquierdo, no detrás del texto */
             width: 2px;
-            background: linear-gradient(to bottom, var(--fisio-terracota), var(--fisio-olivo));
+            background: linear-gradient(to bottom, var(--amber-glow), var(--crimson-blaze));
         }
 
         .time-item {
             position: relative;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
+            padding-left: 35px; /* Separación del texto de la línea */
         }
 
         .time-item:last-child {
@@ -229,25 +294,24 @@
         }
 
         .time-node {
-            width: 14px;
-            height: 14px;
-            background: var(--fisio-terracota);
+            width: 16px;
+            height: 16px;
+            background: var(--amber-glow);
             border-radius: 50%;
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 0 6px var(--glass-bg);
+            top: 5px;
+            left: -7px; /* Centrado exactamente sobre la línea izquierda */
+            box-shadow: 0 0 0 5px var(--lagoon); /* Borde para separarlo visualmente de la línea */
         }
 
         .time-content {
-            padding-top: 30px; 
+            padding-top: 0; 
         }
 
         .time-content span {
             display: block;
-            color: var(--fisio-terracota);
-            font-size: 1.2rem;
+            color: var(--amber-glow);
+            font-size: 1.3rem;
             margin-bottom: 5px;
         }
 
@@ -256,29 +320,31 @@
             font-weight: 300;
             font-size: 1.1rem;
             text-transform: uppercase;
+            opacity: 0.9;
         }
 
         /* --- MENÚ --- */
         .menu-category {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            padding: 40px 30px;
+            padding: 50px 30px;
             border-radius: 20px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
             margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .menu-category h4 {
-            color: var(--fisio-olivo);
-            font-size: 1.4rem;
-            margin-bottom: 30px;
+            color: var(--amber-glow);
+            font-size: 1.6rem;
+            margin-bottom: 40px;
             display: inline-block;
-            border-bottom: 1px solid rgba(107, 112, 92, 0.4);
+            border-bottom: 1px solid var(--crimson-blaze);
             padding-bottom: 10px;
         }
 
         .dish {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .dish:last-child {
@@ -287,8 +353,8 @@
 
         .dish span {
             display: block;
-            color: var(--fisio-terracota);
-            font-size: 1rem;
+            color: var(--text-ivory);
+            font-size: 1.1rem;
             margin-bottom: 8px;
         }
 
@@ -296,6 +362,9 @@
             font-weight: 300;
             color: var(--text-ivory);
             font-size: 1.05rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         /* --- RECOMENDACIONES --- */
@@ -310,12 +379,13 @@
             border: 1px solid var(--glass-border);
             padding: 40px 30px;
             border-radius: 15px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
             text-align: left;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .rec-card h4 {
-            color: var(--fisio-olivo);
+            color: var(--amber-glow);
             font-size: 1.1rem;
             margin-bottom: 15px;
         }
@@ -324,6 +394,7 @@
             font-size: 0.95rem;
             font-weight: 300;
             color: var(--text-ivory);
+            opacity: 0.9;
         }
 
         /* --- AUDIO --- */
@@ -335,8 +406,8 @@
             height: 65px;
             border-radius: 50%; 
             z-index: 5000; 
-            border: 1px solid var(--fisio-terracota);
-            background: rgba(10, 7, 5, 0.8); 
+            border: 1px solid var(--amber-glow);
+            background: var(--glass-bg); 
             cursor: pointer;
             display: flex; 
             align-items: center; 
@@ -349,14 +420,14 @@
 
         #music-btn:hover { 
             transform: scale(1.1); 
-            background: var(--fisio-terracota);
+            background: var(--amber-glow);
             color: var(--bg-dark);
         }
 
         footer { 
             padding: 80px 20px; 
             text-align: center; 
-            border-top: 1px solid rgba(188, 93, 59, 0.2); 
+            border-top: 1px solid rgba(183, 137, 83, 0.2); 
             margin-top: 50px;
             background: var(--glass-bg);
             backdrop-filter: blur(5px);
@@ -367,12 +438,16 @@
             section { margin-bottom: 100px; }
             .section-title { font-size: 2rem; margin-bottom: 40px; }
             .location-info, .timeline-wrapper, .menu-category { padding: 40px 20px; }
+            .timeline-grid { padding-left: 20px; }
+            .time-item { padding-left: 30px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- FONDO DE IMAGEN Y CAPA DE OSCURECIMIENTO -->
     <div class="bg-image"></div>
+    <div class="overlay"></div>
 
     <audio id="gradAudio" loop preload="auto" playsinline>
         <source src="musica.mp3" type="audio/mpeg">
@@ -382,6 +457,15 @@
     <div class="container">
         
         <header>
+            <!-- PÍLDORAS DINÁMICAS VERTICALES -->
+            <div class="pill-container">
+                <div class="pill pill-1"></div>
+                <div class="pill pill-2"></div>
+                <div class="pill pill-3"></div>
+                <div class="pill pill-4"></div>
+                <div class="pill pill-5"></div>
+            </div>
+
             <div class="title-wrapper reveal-node">
                 <h1>FISIOTERAPIA UAEM</h1>
                 <p>GENERACIÓN 2026</p>
@@ -396,7 +480,7 @@
 
             <section class="info-section">
                 <div class="date-box reveal-node">
-                    <span>01</span> <span>08</span> <span>26</span>
+                    <span>18</span> <span>07</span> <span>26</span>
                 </div>
 
                 <div class="location-info reveal-node">
@@ -406,15 +490,15 @@
                 </div>
             </section>
 
-            <!-- ITINERARIO CENTRADO -->
+            <!-- ITINERARIO REDISEÑADO -->
             <section class="timeline-section reveal-node">
-                <h3 class="section-title">Itinerario</h3>
+                <h2 class="section-title">Itinerario</h2>
                 <div class="timeline-wrapper">
                     <div class="timeline-grid">
                         <div class="time-item">
                             <div class="time-node"></div>
                             <div class="time-content">
-                                <span>16:00 HRS</span>
+                                <span>20:00 HRS</span>
                                 <p>Recepción / Saxofón</p>
                             </div>
                         </div>
@@ -452,7 +536,7 @@
 
             <!-- MENÚ -->
             <section class="menu-section reveal-node">
-                <h3 class="section-title">Menú</h3>
+                <h2 class="section-title">Menú</h2>
 
                 <div class="menu-category">
                     <h4>Menú Principal</h4>
@@ -489,14 +573,14 @@
                 <div class="menu-category">
                     <h4>Menú Infantil</h4>
                     <div class="dish">
-                        <p>Pasta codito jamón y crema<br>Papas a la francesa.<br>Tiritas de pollo (empanizadas)</p>
+                        <p>Pasta codito jamón y crema (caliente o fría)<br>Papas a la francesa.<br>Tiritas de pollo (empanizadas)</p>
                     </div>
                 </div>
             </section>
 
             <!-- RECOMENDACIONES -->
             <section class="recs-section reveal-node">
-                <h3 class="section-title">Detalles</h3>
+                <h2 class="section-title">Detalles</h2>
                 <div class="recs-grid">
                     <div class="rec-card">
                         <h4>CLIMA Y PROTECCIÓN</h4>
@@ -528,8 +612,8 @@
         </main>
 
         <footer>
-            <h2 class="accent-title" style="color: var(--fisio-terracota);">FISIOTERAPIA UAEM</h2>
-            <p style="color: var(--fisio-olivo); letter-spacing: 4px; font-size: 0.9rem;">GRADUACIÓN 2026</p>
+            <h2 class="accent-title" style="color: var(--amber-glow);">FISIOTERAPIA UAEM</h2>
+            <p style="color: var(--text-ivory); letter-spacing: 4px; font-size: 0.9rem;">GRADUACIÓN 2026</p>
         </footer>
     </div>
 
